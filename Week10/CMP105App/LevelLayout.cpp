@@ -24,7 +24,6 @@ LevelLayout::LevelLayout()
 	tiles[6].setTextureRect(sf::IntRect(34, 34, 16, 16));
 
 	tileMap.setTileSet(tiles);
-
 	sf::Vector2u mapSize(10, 6);
 	std::vector<int> map = {
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -36,6 +35,20 @@ LevelLayout::LevelLayout()
 	tileMap.setTileMap(map, mapSize);
 	tileMap.setPosition(sf::Vector2f(0, 408));
 	tileMap.buildLevel();
+
+	tileSet_T.loadFromFile("gfx/marioTiles.png");
+	tileSet = TileSet(sf::Vector2u(12,6),1,&tileSet_T, sf::Vector2f(16, 16), 2);
+	tileMap2.loadTexture("gfx/marioTiles.png");
+	tileMap2.setTileSet(tileSet.getTileSet());
+	std::vector<int> map2 = {
+		1, 2, 3, 0, 0, 0, 0, 0, 
+		13, 14, 15, 0, 0, 9, 10, 3, 
+		13, 14, 29, 2, 2, 21, 22, 15, 
+		13, 14, 14, 14, 14, 14, 35, 36, 
+		13, 14, 14, 14, 14, 15, 0, 0,   };
+	tileMap2.setTileMap(map2, sf::Vector2u(8, 5));
+	tileMap2.setPosition(sf::Vector2f(50, 200));
+	tileMap2.buildLevel();
 }
 
 LevelLayout::~LevelLayout()
@@ -45,4 +58,5 @@ LevelLayout::~LevelLayout()
 void LevelLayout::render(sf::RenderWindow* window)
 {
 	tileMap.render(window);
+	tileMap2.render(window);
 }

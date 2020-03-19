@@ -11,6 +11,9 @@ public:
 	~LevelLayout();
 
 	TileMap tileMap;
+	TileMap tileMap2;
+	TileSet tileSet;
+	sf::Texture tileSet_T;
 	void render(sf::RenderWindow* window);
 };
 
