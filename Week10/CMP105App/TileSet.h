@@ -6,15 +6,17 @@ class TileSet
 	float scale = 1;
 	std::vector<GameObject> tileSet;
 	sf::Vector2f tileSize;
-	sf::Texture* tileSet_T;
+	int clearTile = 1;
+	const char* textureAddress;
+	void initialise(sf::Vector2u tileDimensions, int spacing, const char* textureAddress, sf::Vector2f tileSize, float scale);
 
 public:
 	TileSet();
-	TileSet(sf::Vector2u tileDimensions, int spacing ,sf::Texture* texture, sf::Vector2f tileSize ,float scale);
+	TileSet(sf::Vector2u tileDimensions, int spacing , const char* textureAddress, sf::Vector2f tileSize ,float scale);
+	TileSet(sf::Vector2u tileDimensions, int spacing, const char* textureAddress, sf::Vector2f tileSize, float scale, int clearTile);
 	~TileSet();
 
-	void setTexture(sf::Texture* tileset_T);
 	std::vector<GameObject> getTileSet() { return tileSet; }
-	sf::Texture* getTexture() { return tileSet_T; }
+	const char* getTexture() { return textureAddress; }
 };
 

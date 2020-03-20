@@ -12,8 +12,9 @@ public:
 
 	TileMap tileMap;
 	TileMap tileMap2;
+	TileMap tileMap3;
 	TileSet tileSet;
-	sf::Texture tileSet_T;
+	TileSet tileSet2;
 	void render(sf::RenderWindow* window);
 };
 

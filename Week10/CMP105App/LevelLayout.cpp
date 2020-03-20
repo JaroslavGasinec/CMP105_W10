@@ -4,6 +4,7 @@ LevelLayout::LevelLayout()
 {
 	tileMap.loadTexture("gfx/marioTiles.png");
 
+	//Simple Mario
 	GameObject tile;
 	std::vector<GameObject> tiles;
 
@@ -36,19 +37,34 @@ LevelLayout::LevelLayout()
 	tileMap.setPosition(sf::Vector2f(0, 408));
 	tileMap.buildLevel();
 
-	tileSet_T.loadFromFile("gfx/marioTiles.png");
-	tileSet = TileSet(sf::Vector2u(12,6),1,&tileSet_T, sf::Vector2f(16, 16), 2);
-	tileMap2.loadTexture("gfx/marioTiles.png");
+	//Complex Mario
+	tileSet = TileSet(sf::Vector2u(12,6),1,"gfx/marioTiles.png", sf::Vector2f(16, 16), 2, 48);
+	tileMap2.loadTexture(tileSet.getTexture());
 	tileMap2.setTileSet(tileSet.getTileSet());
 	std::vector<int> map2 = {
-		1, 2, 3, 0, 0, 0, 0, 0, 
-		13, 14, 15, 0, 0, 9, 10, 3, 
-		13, 14, 29, 2, 2, 21, 22, 15, 
+		 1,  2,  3,  0,  0,  0,  0,  0, 
+		13, 14, 15,  0,  0,  9, 10,  3, 
+		13, 14, 29,  2,  2, 21, 22, 15, 
 		13, 14, 14, 14, 14, 14, 35, 36, 
-		13, 14, 14, 14, 14, 15, 0, 0,   };
+		13, 14, 14, 14, 14, 15,  0,  0,   };
 	tileMap2.setTileMap(map2, sf::Vector2u(8, 5));
 	tileMap2.setPosition(sf::Vector2f(50, 200));
 	tileMap2.buildLevel();
+	//Pokemon
+	tileSet2 = TileSet(sf::Vector2u(28, 41), 1, "gfx/PokemonTileset.png", sf::Vector2f(16, 16), 10, 6);
+	tileMap3.loadTexture(tileSet2.getTexture());
+	tileMap3.setTileSet(tileSet2.getTileSet());
+	std::vector<int> map3 = {
+		 7,  7,  7, 15, 16, 17,  7,  7,
+		 7,  8,  7, 43, 44, 45,  7,  7,
+		 7,  8,  7, 71, 72, 73,  7,  7,
+		 7,  8,  8, 99,100,101,  8,  7,
+		 7,  8,  8,  8,  8,  8,  8,  7, };
+	tileMap3.setTileMap(map3, sf::Vector2u(8, 5));
+	tileMap3.setPosition(sf::Vector2f(350, 100));
+	tileMap3.buildLevel();
+
+
 }
 
 LevelLayout::~LevelLayout()
@@ -59,4 +75,5 @@ void LevelLayout::render(sf::RenderWindow* window)
 {
 	tileMap.render(window);
 	tileMap2.render(window);
+	tileMap3.render(window);
 }
